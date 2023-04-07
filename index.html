@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fake News Detection System</title>
+  <!-- Tailwind CSS styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navigation bar -->
+  <nav class="bg-blue-500 py-4">
+    <div class="container mx-auto flex justify-between items-center px-4">
+      <a href="#" class="text-white font-bold text-xl">Fake News Detector</a>
+      <button class="text-white hover:text-gray-200 hover:bg-blue-400 rounded-md px-3 py-2">
+        Login
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero section -->
+  <!-- Hero section -->
+<section class="bg-blue-400 py-12">
+  <div class="container mx-auto px-4">
+    <h1 class="text-4xl text-white font-bold mb-4">Stop the spread of fake news</h1>
+    <p class="text-lg text-white mb-8">Our advanced ML algorithms detect fake news with 95% accuracy.</p>
+    <form id="check-news-form" class="mb-8">
+      <div class="flex flex-col md:flex-row md:items-center">
+        <input type="text" id="news-input" name="news-input" class="bg-white rounded-md border-gray-300 px-4 py-2 mb-4 md:mb-0 md:mr-4 w-full md:w-auto" placeholder="Enter news article URL or text">
+        <button type="submit" id="check-news-btn" class="bg-white text-blue-500 hover:bg-blue-500 hover:text-white py-2 px-4 rounded-md">
+          Check
+        </button>
+      </div>
+    </form>
+    <div id="result-container" class="hidden">
+      <p id="result-text" class="text-lg text-white"></p>
+    </div>
+  </div>
+</section>
+<!-- JavaScript code -->
+<script>
+  const form = document.getElementById('check-news-form');
+  const input = document.getElementById('news-input');
+  const button = document.getElementById('check-news-btn');
+  const resultContainer = document.getElementById('result-container');
+  const resultText = document.getElementById('result-text');
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const url = '/api/check-news';
+    const data = { news: input.value };
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then((data) => {
+        resultText.textContent = data.result;
+        resultContainer.classList.remove('hidden');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+</script>
+
+
+  <!-- About section -->
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl text-gray-800 font-bold mb-4">About the Fake News Detection System</h2>
+      <p class="text-lg text-gray-700 mb-8">Our system uses natural language processing and machine learning algorithms to analyze news articles and detect fake news. We've trained our system on a large dataset of verified news articles and fake news articles, which has allowed us to achieve a high level of accuracy.</p>
+      <a href="#" class="bg-blue-500 text-white hover:bg-blue-400 py-2 px-4 rounded-md">
+        Learn more
+      </a>
+    </div>
+  </section>
+
+  <!-- Features section -->
+  <section class="bg-gray-200 py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl text-gray-800 font-bold mb-4">Features</h2>
+      <div class="flex flex-wrap -mx-4">
+        <div class="w-full md:w-1/2 px-4 mb-8">
+          <h3 class="text-xl text-gray-700 font-bold mb-2">Real-time detection</h3>
+          <p class="text-gray-700 mb-4">Our system can detect fake news in real-time, so you can stay up-to-date with the latest news without worrying about false information.</p>
+          <a href="#" class="text-blue-500 hover:text-blue-400 font-bold">
+            Learn more
+          </a>
+        </div>
+        <div class="w-full md:w-1/2 px-4 mb-8">
+          <h3 class="text-xl text-gray-700 font-bold mb-2">High accuracy</h3>
+          <p class="text-gray-700 mb-4">Our system has been trained on a large dataset of verified news articles and fake news articles, allowing us to achieve a high level of accuracy in detecting fake news.</p>
+<a href="#" class="text-blue-500 hover:text-blue-400 font-bold">
+Learn more
+</a>
+</div>
+<div class="w-full md:w-1/2 px-4 mb-8">
+<h3 class="text-xl text-gray-700 font-bold mb-2">Easy to use</h3>
+<p class="text-gray-700 mb-4">Our system is easy to use, with a simple interface that allows you to quickly and easily check whether a news article is fake or not.</p>
+<a href="#" class="text-blue-500 hover:text-blue-400 font-bold">
+Learn more
+</a>
+</div>
+<div class="w-full md:w-1/2 px-4 mb-8">
+<h3 class="text-xl text-gray-700 font-bold mb-2">Customizable</h3>
+<p class="text-gray-700 mb-4">Our system can be customized to fit the specific needs of your organization, ensuring that you get the most out of our advanced ML algorithms.</p>
+<a href="#" class="text-blue-500 hover:text-blue-400 font-bold">
+Learn more
+</a>
+</div>
+</div>
+</div>
+  </section>
+  <!-- Contact section -->
+  <section class="bg-blue-500 py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl text-white font-bold mb-4">Get in touch</h2>
+      <p class="text-lg text-white mb-8">Have a question or want to learn more about our system? Fill out the form below and we'll get back to you as soon as possible.</p>
+      <form class="max-w-lg mx-auto">
+        <div class="mb-4">
+          <label class="block text-white font-bold mb-2" for="name">
+            Name
+          </label>
+          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" id="name" type="text">
+        </div>
+        <div class="mb-4">
+          <label class="block text-white font-bold mb-2" for="email">
+            Email
+          </label>
+          <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" id="email" type="email">
+        </div>
+        <div class="mb-4">
+          <label class="block text-white font-bold mb-2" for="message">
+            Message
+          </label>
+          <textarea class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" id="message"></textarea>
+        </div>
+        <div class="flex justify-center">
+          <button class="bg-white text-blue-500 hover:bg-blue-500 hover:text-white font-bold py-2 px-4 rounded-full">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!--
+
+
+
